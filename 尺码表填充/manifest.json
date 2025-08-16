@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "一键填充尺码表",
+  "description": "在 AliExpress CSP 页面通过快捷键或弹窗导入 CSV 并一键填充尺码表。",
+  "version": "1.0.0",
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["https://csp.aliexpress.com/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "尺码表工具",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "32": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://csp.aliexpress.com/*"],
+      "js": ["contentScript.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "fill-size-chart": {
+      "suggested_key": {
+        "default": "Alt+Shift+F",
+        "mac": "Alt+Shift+F"
+      },
+      "description": "填充当前页面的尺码表"
+    }
+  }
+}
+
+

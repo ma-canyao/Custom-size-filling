@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>尺码表工具</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 12px; width: 320px; }
+    h1 { font-size: 16px; margin: 0 0 8px; }
+    .row { margin-bottom: 10px; }
+    button { padding: 6px 10px; border: none; background: #1677ff; color: #fff; border-radius: 4px; cursor: pointer; }
+    button[disabled] { opacity: .6; cursor: not-allowed; }
+    .muted { color: #666; font-size: 12px; }
+    .hotkey { font-weight: 600; }
+    table { width: 100%; border-collapse: collapse; }
+    td, th { border: 1px solid #eee; padding: 4px; font-size: 12px; text-align: left; }
+    .toolbar { display: flex; gap: 8px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <h1>一键填充尺码表</h1>
+  <div class="row">
+    <input type="file" id="csvFile" accept=".csv,text/csv" />
+    <button id="saveBtn" disabled>保存数据</button>
+  </div>
+  <div class="row toolbar">
+    <button id="fillBtn">填充当前页</button>
+    <button id="clearBtn" style="background:#faad14;">清空数据</button>
+    <button id="openShortcutBtn" style="background:#52c41a;">自定义快捷键</button>
+  </div>
+  <div class="row">
+    <div class="muted">当前快捷键：<span id="hotkey" class="hotkey">读取中...</span></div>
+  </div>
+  <div class="row">
+    <div class="muted">CSV 要求：每行至少 5 列（如：尺码, 肩宽, 胸围, 衣长, 袖长）。将用于 AliExpress CSP 尺码表的前 5 列。</div>
+  </div>
+  <div class="row" id="previewWrap" style="display:none;">
+    <div class="muted">数据预览（前 6 行，前 5 列）：</div>
+    <table id="previewTable"></table>
+  </div>
+  <div class="row" id="status" class="muted"></div>
+  <script src="popup.js"></script>
+  </body>
+  </html>
+
+
